@@ -13,7 +13,7 @@ The easiest way to store local configuration files for Roblox!
 
 ### 1. Load the library
 ```lua
-local EasyCFG = loadstring(game:HttpGet("https://raw.githubusercontent.com/blizzrblx/EasyCFG/refs/heads/main/Source.lua")()
+local EasyCFG = loadstring(game:HttpGet("https://raw.githubusercontent.com/blizzrblx/EasyCFG/refs/heads/main/Source.lua"))()
 ```
 * **Description:** The library is fully open sourced and licensed under the GNU-GPL 3.0
 
