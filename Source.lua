@@ -30,6 +30,43 @@ function EasyCFG:GenerateConfig(Values:{},Path:string)
     end
 end
 
-function EasyCFG:ReadConfig(Path:string)
-    return HttpService:JSONDecode(readfile(Path))
+function EasyCFG:WriteConfig(Values:{},Path:string)
+    local success,Data = pcall(function()
+        writefile(Path,HttpService:JSONEncode(Values))
+    end)
+    if not success then
+        print("EasyCFG: Failed to write config at "..Path)
+    end
 end
+
+function EasyCFG:ReadConfig(Path:string)
+    local success,Data = pcall(function()
+        return HttpService:JSONDecode(readfile(Path))
+    end)
+    if not success then
+        print("EasyCFG: Failed to read config at "..Path)
+    end
+    return Data
+end
+
+function EasyCFG:DeleteConfig(Path:string)
+    local success,Data = pcall(function()
+        delfile(Path)
+    end)
+    if not success then
+        print("EasyCFG: Failed to delete config at "..Path)
+    end
+end
+
+function EasyCFG:ListConfigs(Path:string)
+    local success,Data = pcall(function()
+        return listfiles(Path)
+    end)
+    if not success then
+        print("EasyCFG: Failed to list configs at "..Path)
+    end
+    return Data
+end
+
+print("EasyCFG: Loaded successfully")
+return EasyCFG
